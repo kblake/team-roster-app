@@ -15,7 +15,9 @@ app.controller('rosterCtrl', ['$scope', function ($scope) {
   };
 
   $scope.removePlayer = function(playerIndex) {
-    $scope.players.splice(playerIndex, 1);
+    if(confirm("Are you sure?")) {
+      $scope.players.splice(playerIndex, 1);
+    }
   };
   
 }]);
