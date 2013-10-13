@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="rosterApp">
+  <head>
+    <title>Sports Team Roster</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/2.0/animate.min.css">
+    <link href="roster.css" rel="stylesheet">
+  </head>
+  <body ng-controller="rosterCtrl" class="container">
+  <div class="page-header"><h1>Team Roster <small>Basketball</small></h1></div>
+
+  <h4>New Player</h4>
+  <form class="form-inline" role="form" ng-submit="addPlayer(newPlayer)">
+    <div class="form-group">
+      <label class="sr-only" for="firstname">First name</label>
+      <input type="text" ng-model="newPlayer.firstname" class="form-control" id="firstname" placeholder="Enter first name">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="lastname">Last name</label>
+      <input type="text" ng-model="newPlayer.lastname" class="form-control" id="lastname" placeholder="Enter last name">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="age">Age</label>
+      <input type="number" ng-model="newPlayer.age" class="form-control" id="age" placeholder="Enter age">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="email">Email</label>
+      <input type="email" ng-model="newPlayer.email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <select class="form-control" ng-model="newPlayer.position">
+        <option value="point guard">Point guard</option>
+        <option value="shooting guard">Shooting guard</option>
+        <option value="wing">Wing</option>
+        <option value="forward">Forward</option>
+        <option value="center">Center</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add</button>
+  </form>
+
+  <hr />
+
+  <table ng-cloak class="table table-hover table-condensed" ng-show="players.length">
+    <thead><tr>
+        <th><a href="" ng-click="predicate='firstname'; reverse=!reverse">
+            First Name <span ng-class="{'glyphicon glyphicon-chevron-down': predicate=='firstname' && reverse, 'glyphicon glyphicon-chevron-up': predicate=='firstname' && !reverse}"></span></a>
+        </th>
+        <th><a href="" ng-click="predicate='lastname'; reverse=!reverse">
+            Last Name <span ng-class="{'glyphicon glyphicon-chevron-down': predicate=='lastname' && reverse, 'glyphicon glyphicon-chevron-up': predicate=='lastname' && !reverse}"></span></a>
+        </th>
+        <th>Age</th>
+        <th>Position</a></th>
+        <th>Email</a></th>
+      <th></th>
+    </tr></thead>
+    <tr ng-repeat="player in players | orderBy:predicate:reverse" class="player">
+      <td>{{player.firstname}}</td>
+      <td>{{player.lastname}}</td>
+      <td>{{player.age}}</td>
+      <td>{{player.position | uppercase}}</td>
+      <td ng-bind-html="player.email | linky"></td>
+      <td> 
+        <button class="btn btn-danger" ng-click="removePlayer($index)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+      </td>
+    </tr>
+  </table>
+
+  <div class="alert alert-info" ng-hide="players.length" ng-cloak>
+    <strong>No players on the roster.</strong> Please add players. :)
+  </div>
+  
+  </body>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular-sanitize.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
+  <script src="roster.js"></script>
+</html>
