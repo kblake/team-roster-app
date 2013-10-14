@@ -1,18 +1,10 @@
-.player {
-  -webkit-transition: color 0.6s, background-color 0.3s;
-  -moz-transition: color 0.6s, background-color 0.3s;
-  -ms-transition: color 0.6s, background-color 0.3s;
-  transition: color 0.6s, background-color 0.3s;
-}
-.player label {
-  display: block;
-}
 .player.ng-enter {
   -webkit-animation: fadeInLeft 1s;
   -moz-animation: fadeInLeft 1s;
   -ms-animation: fadeInLeft 1s;
   animation: fadeInLeft 1s;
 }
+
 .player.ng-leave {
   -webkit-animation: bounceOut 1s;
   -moz-animation: bounceOut 1s;
