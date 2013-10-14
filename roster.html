@@ -61,7 +61,7 @@
       <td>{{player.position | uppercase}}</td>
       <td ng-bind-html="player.email | linky"></td>
       <td> 
-        <button class="btn btn-danger" ng-click="removePlayer($index)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+        <button class="btn btn-danger" ng-click="removePlayer(player)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
       </td>
     </tr>
   </table>
